@@ -1,0 +1,2 @@
+# Assets directory
+# The trained ML model (spam_model.joblib) is saved here automatically on first run.

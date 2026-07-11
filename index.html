@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpamShield AI — AI-Powered Spam Email Detection</title>
+    <meta name="description" content="AI-Powered Spam Email Detection with Machine Learning. Protect your inbox from phishing, scams, and malicious emails." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="loader-ring"></div>
+      <div class="loader-text">SpamShield AI</div>
+    </div>
+
+    <!-- Backgrounds -->
+    <div class="bg-gradient"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="mouse-glow"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">
+        <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+        <span class="logo-text">SpamShield AI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#analyzer">AI Engine</a></li>
+        <li><a href="#dashboard">Analytics</a></li>
+        <li><a href="#api">API</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="btn-login">Login</button>
+      <button class="hamburger"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            AI-Powered Threat Detection
+          </div>
+          <h1>
+            <span class="gradient-text">AI Powered</span><br />
+            Spam Email Detection
+          </h1>
+          <p>
+            Advanced machine learning engine that scans email content in real-time,
+            identifying phishing attempts, scam lures, and malicious patterns with
+            99.8% accuracy.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="document.getElementById('analyzer').scrollIntoView({behavior:'smooth'})">
+              <i class="fas fa-magnifying-glass"></i> Start Analyzing
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">
+              <i class="fas fa-chart-line"></i> Live Demo
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('analyzer').scrollIntoView({behavior:'smooth'})">
+              <i class="fas fa-play"></i> Watch Animation
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="robot-container">
+            <!-- AI Robot SVG -->
+            <svg class="robot-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="robotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#00F5A0;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0B1D45;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#071330;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <!-- Antenna -->
+              <line x1="200" y1="60" x2="200" y2="90" stroke="url(#robotGrad)" stroke-width="4" />
+              <circle cx="200" cy="55" r="8" fill="url(#robotGrad)">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" />
+              </circle>
+              <!-- Head -->
+              <rect x="130" y="90" width="140" height="120" rx="24" fill="url(#screenGrad)" stroke="url(#robotGrad)" stroke-width="3" />
+              <!-- Eyes -->
+              <circle cx="170" cy="140" r="16" fill="url(#robotGrad)">
+                <animate attributeName="r" values="16;14;16" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="230" cy="140" r="16" fill="url(#robotGrad)">
+                <animate attributeName="r" values="16;14;16" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="170" cy="140" r="6" fill="#fff" />
+              <circle cx="230" cy="140" r="6" fill="#fff" />
+              <!-- Mouth/Status bar -->
+              <rect x="160" y="175" width="80" height="8" rx="4" fill="url(#robotGrad)" opacity="0.6" />
+              <rect x="160" y="175" width="50" height="8" rx="4" fill="url(#robotGrad)">
+                <animate attributeName="width" values="20;60;20" dur="2s" repeatCount="indefinite" />
+              </rect>
+              <!-- Neck -->
+              <rect x="185" y="210" width="30" height="20" fill="url(#robotGrad)" opacity="0.5" />
+              <!-- Body -->
+              <rect x="100" y="230" width="200" height="130" rx="20" fill="url(#screenGrad)" stroke="url(#robotGrad)" stroke-width="3" />
+              <!-- Chest panel -->
+              <rect x="140" y="260" width="120" height="70" rx="12" fill="rgba(0,212,255,0.05)" stroke="url(#robotGrad)" stroke-width="1.5" />
+              <!-- Chest indicators -->
+              <circle cx="165" cy="280" r="6" fill="#00F5A0">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="200" cy="280" r="6" fill="#00D4FF">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="235" cy="280" r="6" fill="#00F5A0">
+                <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <!-- Progress bar on chest -->
+              <rect x="155" y="300" width="90" height="6" rx="3" fill="rgba(255,255,255,0.1)" />
+              <rect x="155" y="300" width="65" height="6" rx="3" fill="url(#robotGrad)">
+                <animate attributeName="width" values="30;75;30" dur="3s" repeatCount="indefinite" />
+              </rect>
+              <!-- Arms -->
+              <rect x="60" y="240" width="30" height="90" rx="15" fill="url(#screenGrad)" stroke="url(#robotGrad)" stroke-width="2" />
+              <rect x="310" y="240" width="30" height="90" rx="15" fill="url(#screenGrad)" stroke="url(#robotGrad)" stroke-width="2" />
+              <!-- Scan line effect -->
+              <rect x="130" y="90" width="140" height="3" fill="url(#robotGrad)" opacity="0.4">
+                <animate attributeName="y" values="90;210;90" dur="3s" repeatCount="indefinite" />
+              </rect>
+            </svg>
+            <!-- Floating cards -->
+            <div class="float-card float-card-1 cyan"><i class="fas fa-shield-virus"></i> Threat Blocked</div>
+            <div class="float-card float-card-2 green"><i class="fas fa-circle-check"></i> 99.8% Accuracy</div>
+            <div class="float-card float-card-3 cyan"><i class="fas fa-brain"></i> ML Powered</div>
+            <div class="float-card float-card-4 green"><i class="fas fa-bolt"></i> Real-time</div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+      <div class="stats-container">
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="stat-value" data-count="15" data-suffix="M+">0</div>
+          <div class="stat-label">Emails Scanned</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-value" data-count="99.8" data-suffix="%" data-decimals="1">0</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-value" data-count="120" data-suffix="+">0</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-value" data-count="24" data-suffix="/7">0</div>
+          <div class="stat-label">Protection</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Features</span>
+          <h2 class="section-title">Multi-Layer <span class="gradient-text">Threat Detection</span></h2>
+          <p class="section-subtitle">Six powerful detection layers working together to keep your inbox safe from every type of email threat.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="feature-icon"><i class="fas fa-robot"></i></div>
+            <h3>AI Detection</h3>
+            <p>Advanced machine learning models trained on millions of emails to identify spam patterns with precision.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="fas fa-radar"></i></div>
+            <h3>Threat Intelligence</h3>
+            <p>Real-time threat feeds and heuristic analysis detect emerging phishing campaigns before they reach you.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="fas fa-fish-fins"></i></div>
+            <h3>Phishing Scanner</h3>
+            <p>Identifies spoofed sender addresses, brand impersonation, and credential harvesting attempts instantly.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h3>Real-time Analysis</h3>
+            <p>Instant threat assessment with a detailed breakdown of every triggered indicator in milliseconds.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+            <h3>Machine Learning</h3>
+            <p>TF-IDF vectorization combined with Naive Bayes classification for industry-leading detection accuracy.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-icon"><i class="fas fa-code"></i></div>
+            <h3>Secure API</h3>
+            <p>RESTful API for seamless integration into your existing email infrastructure and security pipelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Analyzer -->
+    <section class="section" id="analyzer">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">AI Engine</span>
+          <h2 class="section-title">Email <span class="gradient-text">Threat Scanner</span></h2>
+          <p class="section-subtitle">Paste any email content below and get an instant AI-powered threat analysis with risk scoring.</p>
+        </div>
+
+        <div class="analyzer-box" data-aos="fade-up">
+          <!-- Sample buttons -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+            <button class="btn-ghost sample-btn" data-sample="spam" style="padding:0.5rem 1rem;font-size:0.85rem;">
+              <i class="fas fa-spam"></i> Spam Sample
+            </button>
+            <button class="btn-ghost sample-btn" data-sample="ham" style="padding:0.5rem 1rem;font-size:0.85rem;">
+              <i class="fas fa-envelope"></i> Safe Sample
+            </button>
+            <button class="btn-ghost sample-btn" data-sample="phishing" style="padding:0.5rem 1rem;font-size:0.85rem;">
+              <i class="fas fa-fish-fins"></i> Phishing Sample
+            </button>
+          </div>
+
+          <textarea
+            class="analyzer-textarea"
+            id="email-text"
+            placeholder="Paste your email content here... (subject, sender, body — the AI will analyze everything)"
+          ></textarea>
+
+          <div class="analyzer-actions">
+            <button class="btn-primary" id="analyze-btn">
+              <i class="fas fa-magnifying-glass-chart"></i> Analyze Email
+            </button>
+            <button class="btn-secondary" id="clear-btn">
+              <i class="fas fa-eraser"></i> Clear
+            </button>
+          </div>
+
+          <!-- Scanning overlay -->
+          <div class="scan-overlay" id="scan-overlay">
+            <div class="radar">
+              <div class="radar-circle"></div>
+              <div class="radar-circle"></div>
+              <div class="radar-circle"></div>
+              <div class="radar-sweep"></div>
+              <div class="radar-dot" style="top:30%;left:60%;"></div>
+              <div class="radar-dot" style="top:65%;left:35%;"></div>
+              <div class="radar-dot" style="top:50%;left:70%;"></div>
+            </div>
+            <div class="scan-text" id="scan-text">Initializing AI engine...</div>
+            <div class="scan-progress">
+              <div class="scan-progress-bar" id="scan-bar"></div>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="results" id="results">
+            <div class="results-grid">
+              <!-- Circular progress -->
+              <div class="circular-progress">
+                <svg width="200" height="200">
+                  <circle class="cp-bg" cx="100" cy="100" r="90" />
+                  <circle class="cp-fill" id="cp-fill" cx="100" cy="100" r="90" />
+                </svg>
+                <div class="cp-text">
+                  <div class="cp-value" id="cp-value">0%</div>
+                  <div class="cp-label" id="cp-label">Safe</div>
+                </div>
+              </div>
+              <!-- Details -->
+              <div class="result-details">
+                <div class="result-row">
+                  <span class="result-label">Prediction</span>
+                  <span class="result-value" id="r-prediction">—</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">Spam Probability</span>
+                  <span class="result-value" id="r-probability">—</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">Confidence Score</span>
+                  <span class="result-value" id="r-confidence">—</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">Threat Level</span>
+                  <span class="result-value" id="r-risk">—</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">Verdict</span>
+                  <span class="result-value" id="r-verdict" style="font-size:0.85rem;">—</span>
+                </div>
+                <!-- Risk meter -->
+                <div class="risk-meter">
+                  <div class="risk-meter-bar">
+                    <div class="risk-meter-fill" id="risk-fill"></div>
+                  </div>
+                  <div class="risk-meter-labels">
+                    <span>Safe</span>
+                    <span>Medium</span>
+                    <span>Critical</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Reasons -->
+            <div class="reasons-list" id="reasons-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="section" id="dashboard">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Analytics</span>
+          <h2 class="section-title">Live <span class="gradient-text">Dashboard</span></h2>
+          <p class="section-subtitle">Real-time analytics and threat intelligence from SpamShield AI's detection engine.</p>
+        </div>
+
+        <!-- Dashboard cards -->
+        <div class="dashboard-grid">
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="dash-card-header">
+              <div class="dash-card-icon" style="background:rgba(0,212,255,0.15);color:#00D4FF;">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span class="dash-card-trend trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
+            </div>
+            <div class="dash-card-value">8,421</div>
+            <div class="dash-card-label">Today's Emails</div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="dash-card-header">
+              <div class="dash-card-icon" style="background:rgba(255,71,87,0.15);color:#ff4757;">
+                <i class="fas fa-shield-halved"></i>
+              </div>
+              <span class="dash-card-trend trend-up"><i class="fas fa-arrow-up"></i> 8%</span>
+            </div>
+            <div class="dash-card-value">2,358</div>
+            <div class="dash-card-label">Threats Blocked</div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="dash-card-header">
+              <div class="dash-card-icon" style="background:rgba(0,245,160,0.15);color:#00F5A0;">
+                <i class="fas fa-circle-check"></i>
+              </div>
+              <span class="dash-card-trend trend-up"><i class="fas fa-arrow-up"></i> 3%</span>
+            </div>
+            <div class="dash-card-value">97.2%</div>
+            <div class="dash-card-label">Average Confidence</div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="dash-card-header">
+              <div class="dash-card-icon" style="background:rgba(0,212,255,0.15);color:#00D4FF;">
+                <i class="fas fa-gauge-high"></i>
+              </div>
+              <span class="dash-card-trend trend-up"><i class="fas fa-arrow-up"></i> 1%</span>
+            </div>
+            <div class="dash-card-value">99.8%</div>
+            <div class="dash-card-label">Detection Rate</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+          <div class="chart-card" data-aos="fade-up" data-aos-delay="0">
+            <h3><i class="fas fa-chart-pie" style="color:#00D4FF;"></i> Spam vs Safe</h3>
+            <div class="chart-container">
+              <canvas id="chart-pie"></canvas>
+            </div>
+          </div>
+          <div class="chart-card" data-aos="fade-up" data-aos-delay="100">
+            <h3><i class="fas fa-chart-line" style="color:#00D4FF;"></i> Daily Scans</h3>
+            <div class="chart-container">
+              <canvas id="chart-line"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="charts-row">
+          <div class="chart-card" data-aos="fade-up">
+            <h3><i class="fas fa-chart-column" style="color:#00D4FF;"></i> Threat Categories</h3>
+            <div class="chart-container">
+              <canvas id="chart-bar"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Page -->
+    <section class="section" id="api">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">API</span>
+          <h2 class="section-title">Developer <span class="gradient-text">API</span></h2>
+          <p class="section-subtitle">Integrate SpamShield AI into your applications with our simple REST API.</p>
+        </div>
+
+        <div class="api-doc" data-aos="fade-up">
+          <div class="api-endpoint">
+            <span class="api-method">POST</span>
+            <span class="api-path">/predict</span>
+            <p style="margin-top:0.75rem;color:rgba(255,255,255,0.6);font-size:0.9rem;">
+              Analyze email content and return spam prediction, probability, confidence, risk level, and detected keywords.
+            </p>
+            <h4 style="margin-top:1rem;font-size:0.9rem;color:var(--cyan);">Request</h4>
+            <div class="code-block">
+              <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+<pre>curl -X POST http://localhost:5000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"text": "CONGRATULATIONS! You have won $1,000,000! Click here to claim your prize now!"}'</pre>
+            </div>
+            <h4 style="margin-top:1rem;font-size:0.9rem;color:var(--cyan);">Response</h4>
+            <div class="code-block">
+              <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+<pre>{
+  "prediction": "Spam",
+  "probability": 0.95,
+  "confidence": 95,
+  "risk": "Critical",
+  "keywords": ["congratulations", "won", "claim", "click here", "prize"]
+}</pre>
+            </div>
+          </div>
+
+          <div class="api-endpoint">
+            <span class="api-method">POST</span>
+            <span class="api-path">/predict</span>
+            <h4 style="margin-top:1rem;font-size:0.9rem;color:var(--cyan);">JavaScript Example</h4>
+            <div class="code-block">
+              <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+<pre>const response = await fetch("http://localhost:5000/predict", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ text: "Your email content here" })
+});
+
+const result = await response.json();
+console.log(result.prediction);  // "Spam" or "Ham"
+console.log(result.probability); // 0.0 - 1.0
+console.log(result.confidence);  // 0 - 100
+console.log(result.risk);         // "Low", "Medium", "High", "Critical"
+console.log(result.keywords);     // ["suspicious", "words", ...]</pre>
+            </div>
+          </div>
+
+          <div class="api-endpoint">
+            <h4 style="font-size:0.9rem;color:var(--cyan);margin-bottom:0.75rem;">Response Fields</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.85rem;">
+              <div style="padding:0.5rem;background:rgba(7,19,48,0.5);border-radius:8px;"><strong style="color:var(--cyan);">prediction</strong><br/><span style="color:rgba(255,255,255,0.5);">"Spam" or "Ham"</span></div>
+              <div style="padding:0.5rem;background:rgba(7,19,48,0.5);border-radius:8px;"><strong style="color:var(--cyan);">probability</strong><br/><span style="color:rgba(255,255,255,0.5);">0.0 - 1.0 float</span></div>
+              <div style="padding:0.5rem;background:rgba(7,19,48,0.5);border-radius:8px;"><strong style="color:var(--cyan);">confidence</strong><br/><span style="color:rgba(255,255,255,0.5);">0 - 100 integer</span></div>
+              <div style="padding:0.5rem;background:rgba(7,19,48,0.5);border-radius:8px;"><strong style="color:var(--cyan);">risk</strong><br/><span style="color:rgba(255,255,255,0.5);">Low/Medium/High/Critical</span></div>
+              <div style="padding:0.5rem;background:rgba(7,19,48,0.5);border-radius:8px;grid-column:1/3;"><strong style="color:var(--cyan);">keywords</strong><br/><span style="color:rgba(255,255,255,0.5);">Array of detected suspicious keywords</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">About</span>
+          <h2 class="section-title">The <span class="gradient-text">AI Engine</span></h2>
+          <p class="section-subtitle">SpamShield AI combines machine learning, heuristic analysis, and cybersecurity expertise to deliver enterprise-grade email protection.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="icon"><i class="fas fa-brain"></i></div>
+            <h3>Machine Learning</h3>
+            <p>Our engine uses TF-IDF vectorization to convert email text into numerical features, then applies a Multinomial Naive Bayes classifier trained on thousands of labeled spam and ham emails to predict whether new emails are malicious.</p>
+          </div>
+          <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="fas fa-shield-halved"></i></div>
+            <h3>Cyber Security</h3>
+            <p>We combine ML with rule-based heuristics that detect phishing patterns, urgency tactics, financial lures, sender domain anomalies, and content formatting tricks that spammers use to evade traditional filters.</p>
+          </div>
+          <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="fas fa-microchip"></i></div>
+            <h3>AI Engine</h3>
+            <p>The SpamShield AI engine processes emails through 20+ detection rules across 8 categories, producing a weighted threat score from 0 to 100 with a transparent breakdown of every triggered indicator.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Contact</span>
+          <h2 class="section-title">Get in <span class="gradient-text">Touch</span></h2>
+          <p class="section-subtitle">Have questions about SpamShield AI? Want to integrate our API? Drop us a message.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form" data-aos="fade-up">
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" placeholder="Your name" />
+            <div class="error-msg">Please enter your name (at least 2 characters).</div>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" placeholder="you@example.com" />
+            <div class="error-msg">Please enter a valid email address.</div>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" rows="5" placeholder="Your message..."></textarea>
+            <div class="error-msg">Please enter a message (at least 10 characters).</div>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-success" id="form-success">
+            <i class="fas fa-circle-check"></i> Message sent! We'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+            <span class="logo-text">SpamShield AI</span>
+          </div>
+          <p>AI-powered spam and phishing email detection. Protect your inbox with machine learning-driven threat analysis.</p>
+          <div class="social-links">
+            <a href="#" onclick="event.preventDefault()"><i class="fab fa-twitter"></i></a>
+            <a href="#" onclick="event.preventDefault()"><i class="fab fa-github"></i></a>
+            <a href="#" onclick="event.preventDefault()"><i class="fab fa-linkedin"></i></a>
+            <a href="#" onclick="event.preventDefault()"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#analyzer">AI Engine</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#api">API</a></li>
+            <li><a href="#features">Features</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;">Stay updated on the latest threats and features.</p>
+          <div class="newsletter">
+            <input type="email" placeholder="Your email" />
+            <button><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 SpamShield AI. All rights reserved.</span>
+        <span>Built with Flask + Scikit-learn + Chart.js</span>
+      </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <button class="chatbot-toggle" title="Chat with ShieldBot">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="chatbot-window">
+      <div class="chatbot-header">
+        <div class="avatar"><i class="fas fa-robot"></i></div>
+        <div class="info">
+          <h4>ShieldBot</h4>
+          <span><span class="dot" style="display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:4px;"></span>Online</span>
+        </div>
+        <button class="close-chat"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="chatbot-body"></div>
+      <div class="chatbot-input">
+        <input type="text" id="chat-input" placeholder="Ask me anything..." />
+        <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
